@@ -10,7 +10,7 @@ def migrate_usercache(server_info: base.ServerInfo):
     old_uuid = server_info.old_uuid
     new_uuid = server_info.new_uuid
     usercache_path = os.path.join(server_path, "usercache.json")
-    # 1. 备份愿文件
+    # 1. 备份原文件
     base.backup_file(usercache_path, "usercache", server_info, True)
     with open(usercache_path, "r") as f:
         usercache = json.load(f)
