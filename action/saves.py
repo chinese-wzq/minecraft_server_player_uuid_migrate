@@ -3,6 +3,8 @@ from . import base
 
 
 def migrate_saves(server_info: base.ServerInfo):
+    if input(_("是否确认迁移玩家存档数据？(y/n)")) != "y":
+        return
     server_path = server_info.server_path
     old_uuid = server_info.old_uuid
     new_uuid = server_info.new_uuid
@@ -16,7 +18,7 @@ def migrate_saves(server_info: base.ServerInfo):
     for file in player_data_files:
         if file == old_uuid + ".dat":
             # 3. 备份已存在的新UUID的玩家数据文件
-            base.backup_file(os.path.join(player_data_path, old_uuid + ".dat"), "playerdata", server_info)
+            base.backup_file(os.path.join(player_data_path, new_uuid + ".dat"), "playerdata", server_info)
             # 4. 将旧UUID的玩家数据文件覆盖到新UUID的玩家数据文件
             os.rename(os.path.join(player_data_path, old_uuid + ".dat"),
                       os.path.join(player_data_path, new_uuid + ".dat"))
@@ -33,7 +35,7 @@ def migrate_saves(server_info: base.ServerInfo):
     for file in player_advancements_files:
         if file == old_uuid + ".json":
             # 3. 备份已存在的新UUID的玩家成就数据文件
-            base.backup_file(os.path.join(player_advancements_path, old_uuid + ".json"), "advancements", server_info)
+            base.backup_file(os.path.join(player_advancements_path, new_uuid + ".json"), "advancements", server_info)
             # 4. 将旧UUID的玩家成就数据文件覆盖到新UUID的玩家成就数据文件
             os.rename(os.path.join(player_advancements_path, old_uuid + ".json"),
                       os.path.join(player_advancements_path, new_uuid + ".json"))
@@ -50,7 +52,7 @@ def migrate_saves(server_info: base.ServerInfo):
     for file in player_stats_files:
         if file == old_uuid + ".json":
             # 3. 备份已存在的新UUID的状态数据文件
-            base.backup_file(os.path.join(player_stats_path, old_uuid + ".json"), "stats", server_info)
+            base.backup_file(os.path.join(player_stats_path, new_uuid + ".json"), "stats", server_info)
             # 4. 将旧UUID的状态数据文件覆盖到新UUID的状态数据文件
             os.rename(os.path.join(player_stats_path, old_uuid + ".json"),
                       os.path.join(player_stats_path, new_uuid + ".json"))

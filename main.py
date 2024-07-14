@@ -19,7 +19,7 @@ def main():
     migrate(server_info)
 
 
-choose = input("语言/Language: 1.简体中文 2.English")
+choose = input("语言/Language: 1.简体中文 2.English：")
 if choose == "1":
     gettext.install("zh_cn", "locale")
 else:

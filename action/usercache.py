@@ -4,6 +4,8 @@ import os
 
 
 def migrate_usercache(server_info: base.ServerInfo):
+    if input(_("是否迁移 usercache.json 文件？(y/n)")) != "y":
+        return
     server_path = server_info.server_path
     old_uuid = server_info.old_uuid
     new_uuid = server_info.new_uuid

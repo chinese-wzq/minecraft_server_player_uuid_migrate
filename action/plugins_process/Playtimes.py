@@ -1,4 +1,4 @@
-from .. import base
+import action.base as base
 import os
 
 
