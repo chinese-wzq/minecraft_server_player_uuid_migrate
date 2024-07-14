@@ -22,7 +22,7 @@ cd uuid-migrate-tool
 
 2. Run the migration tool.
 ```bash
-python migrate.py
+python main.py
 ```
 
 3. Follow the prompts to enter the server path, old UUID, and new UUID.
