@@ -10,6 +10,8 @@ def plugin_migrate(server_info: base.ServerInfo):
     for plugin in plugins:
         plugin_process_programme_path = os.path.join("action", "plugins", f"{plugin}.py")
         if os.path.exists(plugin_process_programme_path):
+            if input(_("处理插件%s吗？（y/n）") % plugin) != "y":
+                continue
             print(_("正在处理插件%s...") % plugin)
             plugin_process_programme = __import__(f"plugins.{plugin}")
             try:
