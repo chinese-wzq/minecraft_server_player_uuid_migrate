@@ -8,11 +8,6 @@ def process(server_info: base.ServerInfo):
     base.backup_file(db_path, "LWC", server_info, True)
     con = sqlite3.connect(db_path)
     cur = con.cursor()
-    update_query = f"""
-        UPDATE lwc_protections
-        SET owner = '{server_info.new_uuid}'
-        WHERE owner = '{server_info.old_uuid}';
-    """
-    cur.execute(update_query)
+    cur.execute("UPDATE lwc_protections SET owner = ? WHERE owner = ?;", (server_info.new_uuid, server_info.old_uuid))
     con.commit()
     con.close()
