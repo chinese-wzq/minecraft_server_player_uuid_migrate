@@ -7,9 +7,10 @@ def process(server_info: base.ServerInfo):
     slimefun_folder = os.path.join(server_info.server_path, "data-storage", "Slimefun")
     # 迁移waypoints文件
     waypoints_folder = os.path.join(slimefun_folder, "waypoints")
-    base.backup_file(os.path.join(waypoints_folder, server_info.new_uuid + ".yml"), "Slimefun waypoints", server_info)
-    os.rename(os.path.join(waypoints_folder, server_info.old_uuid + ".yml"),
-              os.path.join(waypoints_folder, server_info.new_uuid + ".yml"))
+    if os.path.exists(os.path.join(waypoints_folder, server_info.old_uuid + ".yml")):
+        base.backup_file(os.path.join(waypoints_folder, server_info.new_uuid + ".yml"), "Slimefun waypoints", server_info)
+        os.rename(os.path.join(waypoints_folder, server_info.old_uuid + ".yml"),
+                  os.path.join(waypoints_folder, server_info.new_uuid + ".yml"))
     # 迁移profile.db文件
     db_file = os.path.join(slimefun_folder, "profile.db")
     base.backup_file(db_file, "Slimefun profile.db", server_info, True)
