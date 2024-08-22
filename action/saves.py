@@ -56,5 +56,3 @@ def migrate_saves(server_info: base.ServerInfo):
             print(_("stats数据迁移成功"))
         else:
             print(_("需要迁移的stats数据不存在"))
-    # =========================
-    print(_("玩家存档数据已迁移完成"))
